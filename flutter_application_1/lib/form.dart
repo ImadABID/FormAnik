@@ -1,4 +1,5 @@
 import 'dart:ffi';
+//import 'dart:html';
 
 import 'questions.dart';
 
@@ -6,27 +7,49 @@ class MyForm {
   int _questionNumber = 0;
 
   List<Question> _questionList = [
-    Question(qtn: 'Avez-vous aimer notre site ?', ans: ""),
-    Question(qtn: 'La navigation vous-a plu ?', ans: ""),
-    Question(qtn: 'Avez-vous aimer le design du site ?', ans: ""),
-    Question(qtn: 'Etes-vous majeur ?', ans: ""),
-    Question(qtn: 'Vous avez plus de trente ans ?', ans: ""),
-    Question(qtn: 'Etes-vous marié\(e\) ?', ans: ""),
-    Question(qtn: 'Avez-vous des enfants ?', ans: ""),
+    Question(qtn: 'fgfdgd', ans: "", nyes: "1", nno: "2"),
+    // Question(qtn: 'La navigation vous-a plu ?', ans: "", nyes: "", nno: ""),
+    // Question(
+    //     qtn: 'Avez-vous aimer le design du site ?', ans: "", nyes: "", nno: ""),
+    // Question(qtn: 'Etes-vous majeur ?', ans: "", nyes: "", nno: ""),
+    // Question(qtn: 'Vous avez plus de trente ans ?', ans: "", nyes: "", nno: ""),
+    // Question(qtn: 'Etes-vous marié\(e\) ?', ans: "", nyes: "", nno: ""),
+    // Question(qtn: 'Avez-vous des enfants ?', ans: "", nyes: "", nno: ""),
   ];
 
-  dynamic nextQuestion() {
-    if (_questionNumber < _questionList.length - 1) {
-      print(_questionNumber);
-      _questionNumber++;
+  dynamic nextQuestion(String ans) {
+    if (_questionList[_questionNumber].NextOnYes == "" &&
+        _questionList[_questionNumber].NextOnNo == "") return true;
+    print(_questionNumber);
+    if (ans == "oui") {
+      print(_questionList[_questionNumber].NextOnYes);
+      _questionNumber = int.parse(_questionList[_questionNumber].NextOnYes);
     } else {
-      bool completed = true;
-      return completed;
+      _questionNumber = int.parse(_questionList[_questionNumber].NextOnNo);
     }
+    return false;
+  }
+
+  setQuestion(String quest, String nyes, String nno, String ans) {
+    _questionList.add(Question(qtn: quest, ans: ans, nyes: nyes, nno: nno));
+  }
+
+  setQuestionAt(String quest, String nyes, String nno, String ans, int idx) {
+    _questionList[idx] = Question(qtn: quest, ans: ans, nyes: nyes, nno: nno);
   }
 
   String getQuestionText() {
     return _questionList[_questionNumber].questionText;
+  }
+
+  List<Question> getAllQuestions() {
+    print("printing question list");
+    for (var i in _questionList) {
+      print("question: " + i.questionText);
+      print("next on no: " + i.NextOnNo);
+      print("next on yes: " + i.NextOnYes);
+    }
+    return _questionList;
   }
 
   setQuestionAnswer(String ans) {

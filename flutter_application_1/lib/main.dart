@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'form.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'dart:convert';
+import "dart:async";
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +32,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
+var counter = 0;
+
 class FormPage extends StatefulWidget {
   const FormPage({super.key});
 
@@ -41,15 +46,70 @@ class _FormPageState extends State<FormPage> {
   MyForm formClass = MyForm();
 
   bool completed = false;
+  bool loaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  // Create a global key that uniquely identifies the Form widget
+  // and allows validation of the form.
+  var Question = [""];
+  var _values_yes = [""];
+  var _values_no = [""];
+  var _values = new Map();
+  var count = 0;
+  getData() async {
+    String data =
+        await DefaultAssetBundle.of(context).loadString("lib/test.json");
+    setState(() {
+      var dJson = json.decode(data);
+      //var count = 5;
+//which results in dJson being a List<dynamic>
+//access the first result
+      for (var element in dJson) {
+        count++;
+      }
+      for (var element in dJson) {
+        count--;
+        var tmp = element[count.toString()];
+        print(count.toString());
+        print(element);
+        Question.insert(0, tmp["question"]);
+        _values_yes.insert(0, tmp["yes_next"]);
+        _values_no.insert(0, tmp["no_next"]);
+      }
+      // print(Question);
+      print(_values_yes);
+      // print(_values_yes);
+    });
+
+    for (int i = 0; i < Question.length; i++) {
+      if (i == 0) {
+        formClass.setQuestionAt(
+            Question[i], _values_yes[i], _values_no[i], "", i);
+      } else {
+        formClass.setQuestion(Question[i], _values_yes[i], _values_no[i], "");
+      }
+    }
+    formClass.getAllQuestions();
+    loaded = true;
+  }
 
   void checkAnswer(String userAnswer) {
+    while (!loaded) {
+      print("loading..");
+    }
+    print("loaded..");
     //bool answer = formClass.getQuestionAnswer();
     formClass.setQuestionAnswer(userAnswer);
     print(formClass.getQuestionAnswer());
     setState(() {
-      if (formClass.nextQuestion() == true) {
+      if (formClass.nextQuestion(userAnswer) == true) {
         print('next question');
-        print(formClass.nextQuestion());
+        print(formClass.nextQuestion(userAnswer));
         completed = true;
         questionAnswered.add(Icon(
           Icons.question_mark,
