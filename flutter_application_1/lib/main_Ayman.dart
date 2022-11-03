@@ -54,7 +54,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   var Question = [""];
   var _values_yes = [""];
   var _values_no = [""];
-  var _values = [];
+  var _values = new Map();
   var count = 0;
   getData() async {
     String data =
@@ -68,7 +68,10 @@ class MyCustomFormState extends State<MyCustomForm> {
         count++;
       }
       for (var element in dJson) {
+        count--;
         var tmp = element[count.toString()];
+        print(count.toString());
+        print(element);
         Question.insert(0, tmp["question"]);
         _values_yes.insert(0, tmp["yes_next"]);
         _values_no.insert(0, tmp["no_next"]);
@@ -102,9 +105,9 @@ class MyCustomFormState extends State<MyCustomForm> {
             onPressed: () {
               setState(() {
                 if (counter < Question.length - 2) {
-                  _values.insert(counter, "yes");
+                  _values[counter.toString()] = "yes";
                   //getData();
-                  counter = int.parse(_values_yes[counter]) - 1;
+                  counter = int.parse(_values_yes[counter]);
                 }
               });
             },
@@ -117,9 +120,9 @@ class MyCustomFormState extends State<MyCustomForm> {
             onPressed: () {
               setState(() {
                 if (counter < Question.length - 2) {
-                  _values.insert(counter, "no");
+                  _values[counter.toString()] = "no";
                   //getData();
-                  counter = int.parse(_values_no[counter]) - 1;
+                  counter = int.parse(_values_no[counter]);
                 }
               });
             },
@@ -130,3 +133,4 @@ class MyCustomFormState extends State<MyCustomForm> {
     );
   }
 }
+

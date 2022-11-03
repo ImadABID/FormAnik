@@ -1,0 +1,158 @@
+[
+{
+  "19": {
+       "question": "Do you want to meet someone ?",
+       "yes_next": "14",
+       "no_next": "7"
+   }
+} 
+,
+    {
+  "18": {
+       "question": "Visit sport.com !",
+       "yes_next": "",
+       "no_next": ""
+   }
+}    
+,    
+    {
+  "17": {
+       "question": "Do you want a website where to study?",
+       "yes_next": "16",
+       "no_next": "7"
+   }
+}    
+,
+    {
+  "16": {
+       "question": "Visit shcool.com !",
+       "yes_next": "",
+       "no_next": ""
+   }
+}    
+,
+{
+  "15": {
+       "question": "Thanks for taking this survey !",
+       "yes_next": "",
+       "no_next": ""
+   }
+}    
+,
+    {
+  "14": {
+       "question": "Install tindeirb !",
+       "yes_next": "",
+       "no_next": ""
+   }
+}    
+,
+    {
+  "13": {
+       "question": "Visit reconversion.com!",
+       "yes_next": "",
+       "no_next": ""
+   }
+}    
+,
+    {
+  "12": {
+       "question": "visit classroom!",
+       "yes_next": "",
+       "no_next": ""
+   }
+}    
+,
+{
+  "11": {
+       "question": "Are you single?",
+       "yes_next": "19",
+       "no_next": "7"
+   }
+}    
+,
+{
+  "10": {
+       "question": "Go play some games with your friends !",
+       "yes_next": "",
+       "no_next": ""
+   }
+}    
+,
+{
+  "9": {
+       "question": "Are you in middle school ?",
+       "yes_next": "17",
+       "no_next": "10"
+   }
+}    
+,
+{
+  "8": {
+       "question": "Are you engaged ?",
+       "yes_next": "7",
+       "no_next": "11"
+   }
+}    
+,
+{
+  "7": {
+       "question": "Are you intersted in sports ?",
+       "yes_next": "18",
+       "no_next": "15"
+   }
+}    
+,
+    {
+  "6": {
+       "question": "Are you looking for new fields ?",
+       "yes_next": "13",
+       "no_next": "7"
+   }
+}    
+,
+    {
+  "5": {
+       "question": "Do you want to improve yourself in it ?",
+       "yes_next": "12",
+       "no_next": "7"
+   }
+}    
+,
+    {
+  "4": {
+       "question": "Are you married ?",
+       "yes_next": "7",
+       "no_next": "8"
+   }
+}    
+,
+{
+    "3": {
+        "question": "Do you love what you are studying ?",
+        "yes_next": "5",
+        "no_next": "6"
+    }
+}
+  ,  {
+    "2": {
+        "question": "Are you in higth school ?",
+        "yes_next": "9",
+        "no_next": "17"
+    }
+},
+{
+    "1": {
+        "question": "Are you a student ?",
+        "yes_next": "3",
+        "no_next": "4"
+    }
+},  
+{
+    "0": {
+        "question": "Are you over 18 ?",
+        "yes_next": "1",
+        "no_next": "2"
+    }
+}
+]
